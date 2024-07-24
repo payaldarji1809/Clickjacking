@@ -1,0 +1,5 @@
+# wallp0p/Dockerfile
+
+FROM nginx:latest
+COPY ./attacker.html /usr/share/nginx/html/attacker.html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf

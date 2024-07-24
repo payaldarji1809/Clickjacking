@@ -1,0 +1,22 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+  wallpop:
+    build: ./wallpop
+    ports:
+      - "8080:80"
+    networks:
+      - mynetwork
+
+  wallp0p:
+    build: ./wallp0p
+    ports:
+      - "8081:80"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

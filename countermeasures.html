@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        #logoutButton, .toggleButton {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #logoutButton:hover, .toggleButton:hover {
+            background-color: #0056b3;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-item {
+            position: relative;
+            width: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-item img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover {
+            transform: scale(1.05);
+        }
+
+        .image-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-item a {
+            display: block;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            z-index: 1; /* Ensure the link is above the image */
+        }
+
+        .image-item a:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .clickjacking-iframe {
+            width: 120px; /* Match the button width */
+            height: 40px; /* Match the button height */
+            position: absolute;
+            bottom: 10px; /* Position it just above the download button */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0; /* Make it fully invisible */
+            z-index: 2;
+            pointer-events: auto;
+        }
+
+        #protector {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 99999999;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly visible for demo purposes */
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+        }
+        #protector a {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome!</h2>
+        <button id="logoutButton">Logout</button>
+        <button class="toggleButton" onclick="toggleProtector()">Toggle Protector</button>
+        <button class="toggleButton" onclick="toggleClickjacking()">Toggle Clickjacking</button>
+        <button class="toggleButton" onclick="resetProtector()">Reset Protector</button>
+
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?w=200" alt="Image 1">
+                <a href="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?download=1" download="image1.jpg">Download</a>
+            </div>
+            <div class="image-item" style="position: relative;">
+                <img src="https://images.pexels.com/photos/159872/book-open-pages-literature-159872.jpeg?w=200" alt="Image 2">
+                <iframe class="clickjacking-iframe" src="attacker.html" id="clickjackingIframe"></iframe> <!-- Invisible iframe for clickjacking -->
+                <a href="https://images.pexels.com/photos/159872/book-open-pages-literature-159872.jpeg?download=1" download="image2.jpg" id="clickjackingLink">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1516972810927-80185027ca84?w=200" alt="Image 3">
+                <a href="https://images.unsplash.com/photo-1516972810927-80185027ca84?download=1" download="image3.jpg">Download</a>
+            </div>
+            <div class="image-item" style="position: relative;">
+                <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=200" alt="Image 4">
+                <a href="https://example.com/malicious-file.exe" download="malicious-file.exe" onclick="showProtectedPage()">Download</a>
+                <!-- <a href="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?download=1" download="image4.jpg">Download</a> -->
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=200" alt="Image 5">
+                <a href="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?download=1" download="image5.jpg">Download</a>
+            </div>
+        </div>
+
+        <div id="protector">
+            <a href="/" target="_blank">Go to the site</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            // Remove cookie
+            document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            // Redirect to login page
+            window.location.href = "login.html";
+        });
+
+        function clickjackingWarning() {
+            alert("Clickjacking attempt blocked!");
+        }
+
+        function showProtectedPage() {
+            // There will be an error if top window is from a different origin
+            // but that's ok here
+            try {
+                if (top.document.domain === document.domain) {
+                    document.getElementById('protector').style.display = 'none';
+                }
+            } catch (e) {
+                alert("Malicious activity detected and blocked!");
+            }
+        }
+
+        function toggleProtector() {
+            const protector = document.getElementById('protector');
+            if (protector.style.display === 'none') {
+                protector.style.display = 'flex';
+            } else {
+                protector.style.display = 'none';
+            }
+        }
+
+        function toggleClickjacking() {
+            const iframe = document.getElementById('clickjackingIframe');
+            const link = document.getElementById('clickjackingLink');
+            if (iframe.style.display === 'none') {
+                iframe.style.display = 'block';
+                link.onclick = clickjackingWarning;
+            } else {
+                iframe.style.display = 'none';
+                link.onclick = null;
+            }
+        }
+
+        function resetProtector() {
+            document.getElementById('protector').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .image-item {
+            position: relative;
+            width: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-item img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover {
+            transform: scale(1.05);
+        }
+
+        .image-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-item a {
+            display: block;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            z-index: 1; /* Ensure the link is above the image */
+        }
+
+        .image-item a:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome!</h2>
+
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?w=200" alt="Image 1">
+                <a href="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?download=1" download="image1.jpg">Download</a>
+            </div>
+            <div class="image-item" style="position: relative;">
+                <img src="https://images.pexels.com/photos/159872/book-open-pages-literature-159872.jpeg?w=200" alt="Image 2">
+                <a href="https://images.pexels.com/photos/159872/book-open-pages-literature-159872.jpeg?download=1" download="image2.jpg">Download</a>
+
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1516972810927-80185027ca84?w=200" alt="Image 3">
+                <a href="https://images.unsplash.com/photo-1516972810927-80185027ca84?download=1" download="image3.jpg">Download</a>
+            </div>
+            <div class="image-item" style="position: relative;">
+                <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=200" alt="Image 4">
+                <a href="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?download=1" download="image4.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=200" alt="Image 5">
+                <a href="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?download=1" download="image5.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200" alt="Image 6">
+                <a href="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?download=1" download="image6.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=200" alt="Image 7">
+                <a href="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?download=1" download="image7.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=200" alt="Image 8">
+                <a href="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?download=1" download="image8.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200" alt="Image 9">
+                <a href="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?download=1" download="image9.jpg">Download</a>
+            </div>
+            <div class="image-item">
+                <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=200" alt="Image 10">
+                <a href="https://images.unsplash.com/photo-1560807707-8cc77767d783?download=1" download="image10.jpg">Download</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
